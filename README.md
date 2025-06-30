@@ -6,11 +6,11 @@
 
 This is a simple banking transaction system built with Java 21 and Spring Boot 3.2.1.
 
-I designed the transaction with core fields. Of course, there are more fields need to be included in production environment.
+I designed the transaction with core fields. Of course, there are more fields need to be included in real world banking system. 
 
-I also write some comments in the code begins with note to record what I was thinking when coding.
+I also write several comments in the code where begins with 'Note', to record what I was thinking when coding. Please let me know if you have any concerns or questions. Thank you.
 
-
+![img.png](images/comments.png)
 
 ### Features
 
@@ -26,7 +26,7 @@ I also write some comments in the code begins with note to record what I was thi
 
  \- Comprehensive testing, including unit and stress testing
 
- \- Containerization with tool like Docker
+ \- Containerization with tool, see the Docker file
 
  \- Implement caching mechanisms
 
@@ -34,17 +34,17 @@ I also write some comments in the code begins with note to record what I was thi
 
  \- Efficient data queries and pagination
 
- \- Follow RESTful API design principles
+ \- Followed RESTful API design principles
 
 \- It's a stand-alone project that is straightforward to run and test
 
 \- Use Maven for project management
 
-\- Support page functionalities: the swagger UI
+\- Support page functionalities, see the swagger UI
 
  
 
-###  API Implemented:
+###  API Implemented
 
 \- Create transaction
 
@@ -61,6 +61,20 @@ I also write some comments in the code begins with note to record what I was thi
 \- The API can withstand stress tests and maintain performance under load (please review the testing result)
 
 
+### Online Swagger URL
+
+If you want to check the API details quickly. 
+To save your time, you can also check the swagger UI online.
+
+I have my own alibaba cloud server and I deployed the project to my server:
+
+http://39.103.58.38:8080/banking/swagger-ui/index.html
+
+![img_1.png](images/online_swagger.png)
+
+I have inserted 1000 records in the H2 database.
+
+![img.png](images/online_swagger2.png)
 
 ### Using H2 memory DB
 
@@ -80,16 +94,12 @@ And you will see the table created:
 
 ![h2-db2.png](images/h2-db2.png)
 
-### Swagger URL:
+### Local Swagger URL
 
 http://localhost:8080/banking/swagger-ui/index.html
 
 You can operate in the swagger UI, to create/update/delete/query transactions.
 
-![swagger.png](images/swagger.png)
-
-
-#### 
 
 ### API endpoints and swagger operations
 
@@ -186,7 +196,7 @@ curl -X DELETE http://localhost:8080/banking/transaction/1
 
 **8. Delete transaction by TradeNo:**
 ```bash
-curl -X DELETE http://localhost:8080/banking/transaction/by-trade-no/123456789012345001
+curl -X DELETE http://localhost:8080/banking/transaction/by-trade-no/175129006099700099
 ```
 
 ![img_2.png](images/delete_by_trade_number.png)
@@ -213,6 +223,7 @@ mvn spring-boot:run
 ![img_4.png](images/img_4.png)
 
 - Start the stress test in StressTest.java to insert 100000 records
+
 ![img_8.png](images/img_8.png)
 
 Below is the result of the stress testing. You can see the throughput is 7423.35/sec
@@ -251,4 +262,5 @@ You can see it's started in docker container:
 Open the swagger and you access.
 
 ![img.png](images/swagger-docker.png)
+
 
