@@ -1,16 +1,68 @@
 # Banking Transaction Management System
 
-A simple banking transaction system built with Java 21 and Spring Boot 3.2.1
-
-#### Swagger URL:
-http://localhost:8080/banking/swagger-ui/index.html
-
-You can operate in the swagger UI, to create/update/delete/query transactions.
-
-![swagger.png](images/swagger.png)
 
 
-#### H2 memory DB
+### Description
+
+This is a simple banking transaction system built with Java 21 and Spring Boot 3.2.1.
+
+I designed the transaction with core fields. Of course, there are more fields need to be included in production environment.
+
+I also write some comments in the code begins with note to record what I was thinking when coding.
+
+
+
+### Features
+
+\- Write in Java 21 and Spring Boot
+
+\- The primary entity is the transaction
+
+\- All data was held in memory (H2 Database)
+
+ \- Clear and well-structured API
+
+ \- Emphasis on performance for all core operations
+
+ \- Comprehensive testing, including unit and stress testing
+
+ \- Containerization with tool like Docker
+
+ \- Implement caching mechanisms
+
+ \- Robust validation and exception handling
+
+ \- Efficient data queries and pagination
+
+ \- Follow RESTful API design principles
+
+\- It's a stand-alone project that is straightforward to run and test
+
+\- Use Maven for project management
+
+\- Support page functionalities: the swagger UI
+
+ 
+
+###  API Implemented:
+
+\- Create transaction
+
+\- Delete transaction (by id or trade number)
+
+\- Modify transaction (by id or trade number)
+
+\- List all transactions (by page)
+
+\- Implemented error handling for scenarios, including creating duplicate transactions or deleting a non-existent transaction and so on
+
+\- Including perform unit testing on the API to ensure robustness and reliability
+
+\- The API can withstand stress tests and maintain performance under load (please review the testing result)
+
+
+
+### Using H2 memory DB
 
 Connection URL: http://localhost:8080/banking/h2-console
 
@@ -28,7 +80,18 @@ And you will see the table created:
 
 ![h2-db2.png](images/h2-db2.png)
 
-### API endpoints
+### Swagger URL:
+
+http://localhost:8080/banking/swagger-ui/index.html
+
+You can operate in the swagger UI, to create/update/delete/query transactions.
+
+![swagger.png](images/swagger.png)
+
+
+#### 
+
+### API endpoints and swagger operations
 
 **1. Create a new transaction:**
 
@@ -128,36 +191,31 @@ curl -X DELETE http://localhost:8080/banking/transaction/by-trade-no/12345678901
 
 ![img_2.png](images/delete_by_trade_number.png)
 
-#### API Unit test
+### API Unit test
 
-API unit test 类位于
+Start below API unit test class:
 
 ![img.png](images/unitTestClass.png)
 
-包括了全面的参数的验证
+I included different cases:
 
 ![img.png](images/unitTest.png)
 
-### Unit Tests
-```bash
-mvn test -Dtest=TransactionServiceTest
-```
+### API Stress test
 
-#### API Stress test
-
-- start the application firstly
+- start the application firstly through below command or you can start it in IntelliJ IDEA
 ```
 mvn spring-boot:run
 ```
 ![img_2.png](images/img_2.png)
 
-- you can login h2 database to verify no data there
+- Login h2 database to verify no data there
 ![img_4.png](images/img_4.png)
 
 - Start the stress test in StressTest.java to insert 100000 records
 ![img_8.png](images/img_8.png)
 
-Below is the result of the stress test. You can see the throughput is 7423.35/sec
+Below is the result of the stress testing. You can see the throughput is 7423.35/sec
 ![img_7.png](images/img_7.png)
 
 Check the H2 database, you can see the data has been inserted successfully
@@ -169,15 +227,28 @@ Check the H2 database, you can see the data has been inserted successfully
 Run in docker (ensure you have docker installed and running):
 
 ```bash
-docker build -t banking-transaction .
-docker run -p 8080:8080 banking-transaction
+docker build -t transaction-management . 
+docker run -d -p 8080:8080 --name transaction-management transaction-management
+docker logs transaction-management
 ```
 
-![img.png](images/run_in_docker.png)
+build the image:
 
+![img.png](images/docker.png)
 
-check status
+![img_1.png](images/docker_1.png)
 
+Run the image:
 
+![img_2.png](images/docker_2.png)
 
+![img_3.png](images/docker_3.png)
+
+You can see it's started in docker container:
+
+![img_4.png](images/docker_4.png)
+
+Open the swagger and you access.
+
+![img.png](images/swagger-docker.png)
 
