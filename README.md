@@ -4,7 +4,7 @@
 
 ### Description
 
-This is a simple banking transaction system built with Java 21 and Spring Boot 3.2.1.
+I am Zou Yongwei (邹永卫). This is a simple banking transaction system built with Java 21 and Spring Boot 3.2.1.
 
 I designed the transaction with core fields. Of course, there are more fields need to be included in real world banking system. 
 
